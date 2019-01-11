@@ -10,7 +10,7 @@ mongoose.connect(config.db.url + "/" + config.db.name, {useNewUrlParser: true});
 
 const db = mongoose.connection;
 
-const collections = ["orders","categories","subcategories","brands"];
+const collections = ["orders", "categories", "subcategories", "brands"];
 
 db.once("open", async () => {
     collections.forEach(async collectionName => {
@@ -59,6 +59,7 @@ db.once("open", async () => {
         {
             name: "sportman",
             brand: adidas._id,
+            category: jacket.category,
             subcategory: jacket._id,
             price: 100,
             image: "1.jpg",
@@ -67,7 +68,7 @@ db.once("open", async () => {
         {
             name: "air",
             brand: nike._id,
-            category: "boots",
+            category: running.category,
             subcategory: running._id,
             price: 110,
             image: "2.jpg",
@@ -76,7 +77,7 @@ db.once("open", async () => {
         {
             name: "air",
             brand: nike._id,
-            category: "hat",
+            category: cap.category,
             subcategory: cap._id,
             price: 20,
             image: "3.jpg",

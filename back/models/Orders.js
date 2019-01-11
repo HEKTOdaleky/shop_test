@@ -10,6 +10,11 @@ const OrderSchema = new Schema({
         ref: 'Brand',
         required: true
     },
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
+    },
     subcategory: {
         type: Schema.Types.ObjectId,
         ref: 'SubCategory',
