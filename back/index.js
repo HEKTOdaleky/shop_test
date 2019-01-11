@@ -6,6 +6,7 @@ const config = require("./config");
 const orders = require('./app/orders');
 const categories = require('./app/categories');
 const subCategories = require('./app/subcategories');
+const brands = require('./app/brand');
 
 const app = express();
 
@@ -26,6 +27,7 @@ db.once("open", () => {
         app.use('/orders', orders());
         app.use('/categories', categories());
         app.use('/subcategories', subCategories());
+        app.use('/brands', brands());
 
         console.log(`Server started on ${port} port!`);
     });
