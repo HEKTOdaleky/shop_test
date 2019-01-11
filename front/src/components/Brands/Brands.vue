@@ -1,7 +1,9 @@
 <template>
     <div class='brands'>
         <ul>
-            <li v-for='(item,index) in brands'>
+            <li
+                    v-for='(item,index) in brands'
+                    v-on:click='()=>getCategories(item.name)'>
                 {{item.name}}
             </li>
         </ul>
@@ -10,10 +12,17 @@
 
 <script>
     import * as types from './../../store/types';
-    import {mapGetters} from 'vuex';
+    import {mapActions, mapGetters} from 'vuex';
 
     export default {
         name: 'Brands',
+
+        methods: {
+            ...mapActions({
+                getCategories: types.FETCH_BRAND_CATEGORIES
+            })
+        },
+
         computed: {
             ...mapGetters({
                 brands: types.GET_BRANDS
@@ -29,7 +38,7 @@
         height: 100%;
     }
 
-    .brands li{
+    .brands li {
 
         cursor: pointer;
         margin: 2px 30px;

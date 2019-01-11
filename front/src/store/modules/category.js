@@ -1,25 +1,22 @@
 import * as types from '../types';
-// import Vue from 'vue';
-import axios from 'axios';
-import {baseUrl} from '../../config';
+import {baseUrl} from "../../config";
+import axios from "axios/index";
+
 
 const state = {
     categories: [],
     categoriesPending: false,
     categoriesError: false,
-
-    orders: [],
-    ordersPending: false,
-    ordersError: false
 };
 
 const getters = {
     [types.GET_CATEGORIES]: state => state.categories,
 
-    [types.GET_ORDERS]: state => state.orders
+
 };
 
 const mutations = {
+
     [types.SAVE_ALL_CATEGORIES_PENDING]: (state) => {
         state.categoriesPending = true;
         state.categoriesError = false;
@@ -35,29 +32,12 @@ const mutations = {
         state.categoriesError = false;
         state.categories = payload;
     },
-
-
-    [types.SAVE_ORDERS_PENDING]: (state) => {
-        state.ordersPending = true;
-        state.ordersError = false
-    },
-
-    [types.SAVE_ORDERS_FAILURE]: (state) => {
-        state.ordersPending = false;
-        state.ordersError = true
-    },
-
-    [types.SAVE_ORDERS_SUCCESS]: (state, payload) => {
-        state.ordersPending = false;
-        state.ordersError = false;
-        state.orders = payload;
-    }
 };
 
 const actions = {
     [types.FETCH_ALL_CATEGORIES]: ({commit}) => {
         commit(types.SAVE_ALL_CATEGORIES_PENDING);
-        axios.get(baseUrl + 'subcategories')
+        axios.get(baseUrl + 'categories')
             .then(resp => {
                     commit(types.SAVE_ALL_CATEGORIES_SUCCESS, resp.data);
                 },
@@ -66,18 +46,22 @@ const actions = {
                 })
     },
 
-    [types.FETCH_ORDERS]: (({commit}, payload) => {
-        commit(types.SAVE_ORDERS_PENDING);
-        return axios.request(baseUrl + 'orders', {
-            method: 'get',
-            params: payload
-        })
-            .then(response => {
-                commit(types.SAVE_ORDERS_SUCCESS, response.data);
-            }, error => {
-                commit(types.SAVE_ORDERS_FAILURE);
-            });
-    })
+    [types.FETCH_BRAND_CATEGORIES]: ({commit}, payload) => {
+        commit(types.SAVE_ALL_CATEGORIES_PENDING);
+        axios.request(baseUrl + 'categories/brands',
+            {
+                method: 'get',
+                params: {
+                    brand: payload
+                }
+            })
+            .then(resp => {
+                    commit(types.SAVE_ALL_CATEGORIES_SUCCESS, resp.data);
+                },
+                error => {
+                    commit(types.SAVE_ALL_CATEGORIES_FAILURE);
+                })
+    },
 };
 
 export default {

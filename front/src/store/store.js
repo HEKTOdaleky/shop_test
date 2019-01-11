@@ -1,13 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import main from './modules/main';
-import brands from './modules/brands'
+import orders from './modules/orders';
+import brands from './modules/brands';
+import category from './modules/category';
+
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     modules: {
-        main,
-        brands
+        orders,
+        brands,
+        category
     }
 });

@@ -18,6 +18,7 @@ export const SAVE_BRANDS_FAILURE = 'orders/SAVE_BRANDS_FAILURE';
 
 //Actions
 export const FETCH_ALL_CATEGORIES = 'categories/FETCH_ALL_CATEGORIES';
+export const FETCH_BRAND_CATEGORIES = 'categories/FETCH_BRAND_CATEGORIES';
 export const FETCH_ORDERS = 'orders/FETCH_ORDERS';
 export const FETCH_BRANDS = 'brands/FETCH_BRANDS';
 

@@ -17,22 +17,26 @@ const createRouter = () => {
     router.get('/brands', async (req, res) => {
 
         try {
-            const brand = await Brand.findOne({name: req.body.brand});
+            const brand = await Brand.findOne({name: req.query.brand});
+
 
             const orders = await Orders.aggregate([
                 {
                     $group: {
                         "_id": "$category",
                         "brand": {$first: "$brand"},
-                        "name": {$first: "$name"}
+                        "name": {$first: "$name"},
+                        "category": {$first: "$category"}
                     }
                 },
-                {$project: {"category": 1, brand: 1, name: 1}},
+                {$project: {"_id": 0, brand: 1, name: 1, category: 1}},
                 {$match: {brand: brand._id}}
             ]);
 
+            const tmp = await Brand.populate(orders, {path: 'brand'});
+            const categories = await Category.populate(tmp, {path: 'category'});
 
-            res.send(orders);
+            res.send(categories);
         }
         catch (e) {
             res.sendStatus(500);

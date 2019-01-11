@@ -1,12 +1,14 @@
 <template>
-    <div>
+    <div class='main'>
         <Brand/>
+        <Categories/>
     </div>
 </template>
 
 <script>
     import Orders from './components/Orders/Orders';
     import Brand from './components/Brands/Brands';
+    import Categories from './components/Categories/Categories';
     import * as types from './store/types';
     import {mapActions, mapGetters} from 'vuex';
 
@@ -14,7 +16,8 @@
     export default {
         components: {
             Orders,
-            Brand
+            Brand,
+            Categories
         },
 
         methods: {
@@ -41,5 +44,7 @@
 </script>
 
 <style>
-
+    .main {
+        display: flex;
+    }
 </style>
