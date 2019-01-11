@@ -2,7 +2,7 @@
     <div>
         <ul>
             <li v-for='(item,index) in category'>
-                {{item.name}}
+                {{item.category && item.category.name}}
             </li>
         </ul>
         <Orders/>
@@ -22,7 +22,8 @@
 
         methods: {
             ...mapActions({
-                fetchAllCategories: types.FETCH_ALL_CATEGORIES
+                fetchAllCategories: types.FETCH_ALL_CATEGORIES,
+                fetchOrders: types.FETCH_ORDERS
             }),
         },
 
@@ -34,10 +35,17 @@
 
         created() {
             this.fetchAllCategories();
+            this.fetchOrders();
+
         }
     }
 </script>
 
 <style>
-
+    li {
+        display: inline-block;
+        cursor: pointer;
+        margin: 2px 30px;
+        padding: 5px 10px;
+    }
 </style>

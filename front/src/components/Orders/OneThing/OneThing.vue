@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='order'>
         <div>
             <img
                     :src=image
@@ -35,5 +35,14 @@
 </script>
 
 <style>
+    .order {
+        width: 25%;
+        min-width: 250px;
+        max-width: 350px;
+    }
 
+    img {
+        width: 50%;
+        height: auto;
+    }
 </style>
