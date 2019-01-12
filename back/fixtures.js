@@ -57,6 +57,7 @@ db.once("open", async () => {
 
     await Orders.create(
         {
+            orderNum: "1",
             name: "sportman",
             brand: adidas._id,
             category: jacket.category,
@@ -66,6 +67,7 @@ db.once("open", async () => {
             about: "fjdofsjdofjdsofjdsopfjsdofodpsfjdopsfjdopsfjdsopfs"
         },
         {
+            orderNum: "2",
             name: "gdsgsd",
             brand: adidas._id,
             category: jacket.category,
@@ -75,6 +77,7 @@ db.once("open", async () => {
             about: "fjdoffdsfdspsfjdsopfs"
         },
         {
+            orderNum: "3",
             name: "g321321d",
             brand: adidas._id,
             category: jacket.category,
@@ -84,6 +87,7 @@ db.once("open", async () => {
             about: "fjdoffdsfdspsfjdsopfs"
         },
         {
+            orderNum: "4",
             name: "gewqeqwgsd",
             brand: adidas._id,
             category: jacket.category,
@@ -93,6 +97,7 @@ db.once("open", async () => {
             about: "fjdoffdsfdspsfjdsopfs"
         },
         {
+            orderNum: "5",
             name: "g121dddd",
             brand: adidas._id,
             category: jacket.category,
@@ -102,6 +107,7 @@ db.once("open", async () => {
             about: "fjdoffdsfdspsfjdsopfs"
         },
         {
+            orderNum: "6",
             name: "air",
             brand: nike._id,
             category: running.category,
@@ -111,6 +117,7 @@ db.once("open", async () => {
             about: "fjdofsjdofjdsofjdsopfjsdofodpsfjdopsfjdopsfjdsopfs"
         },
         {
+            orderNum: "7",
             name: "air",
             brand: nike._id,
             category: cap.category,

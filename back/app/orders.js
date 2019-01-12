@@ -19,7 +19,18 @@ const createRouter = () => {
         }
 
         catch (e) {
+            res.sendStatus(500);
+        }
+    });
 
+    router.get('/id', async (req, res) => {
+        console.log(req.query.id)
+        try {
+            const order = await Orders.findOne({orderNum: req.query.id});
+            res.send(order);
+        }
+        catch (e) {
+            res.sendStatus(500);
         }
     });
 

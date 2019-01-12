@@ -6,7 +6,11 @@ import {baseUrl} from '../../config';
 const state = {
     orders: [],
     ordersPending: false,
-    ordersError: false
+    ordersError: false,
+
+    oneOrder: {},
+    oneOrderPending: false,
+    oneOrderError: false
 };
 
 const getters = {
@@ -29,7 +33,23 @@ const mutations = {
         state.ordersPending = false;
         state.ordersError = false;
         state.orders = payload;
-    }
+    },
+
+    [types.SAVE_ONE_ORDER_PENDING]: (state) => {
+        state.oneOrderPending = true;
+        state.oneOrderError = false
+    },
+
+    [types.SAVE_ONE_ORDER_FAILURE]: (state) => {
+        state.oneOrderPending = false;
+        state.oneOrderError = true
+    },
+
+    [types.SAVE_ONE_ORDER_SUCCESS]: (state, payload) => {
+        state.oneOrderPending = false;
+        state.oneOrderError = false;
+        state.oneOrder = payload;
+    },
 };
 
 const actions = {
@@ -46,6 +66,20 @@ const actions = {
                 commit(types.SAVE_ORDERS_SUCCESS, response.data);
             }, error => {
                 commit(types.SAVE_ORDERS_FAILURE);
+            });
+    }),
+
+    [types.FETCH_ONE_ORDER]: (({commit}, payload) => {
+        commit(types.SAVE_ONE_ORDER_PENDING);
+
+        return axios.request(baseUrl + 'orders/id', {
+            method: 'get',
+            params: {order: payload}
+        })
+            .then(response => {
+                commit(types.SAVE_ONE_ORDER_SUCCESS, response.data);
+            }, error => {
+                commit(types.SAVE_ONE_ORDER_FAILURE);
             });
     })
 };

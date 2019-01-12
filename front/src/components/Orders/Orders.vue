@@ -5,7 +5,8 @@
                 :image='imageUrl + item.image'
                 :name='item.name'
                 :price='item.price'
-                :click='()=>console.log(item.name)'/>
+                :click='()=>console.log(item.name)'
+                :modelId='item.orderNum'/>
     </div>
 </template>
 

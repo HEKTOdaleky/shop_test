@@ -1,6 +1,6 @@
 <template>
     <div class='order'>
-        <router-link class="nav-link" :to="link">
+        <router-link class="nav-link" :to="link" @click.native="()=>openOrder(modelId)">
             <div>
                 <img
                         :src=image
@@ -17,6 +17,10 @@
     export default {
         name: 'OneThing',
         props: {
+            modelId: {
+                type: String,
+
+            },
             image: {
                 type: String,
                 required: true
@@ -33,9 +37,15 @@
                 required: true
             }
         },
+        methods: {
+            openOrder(id) {
+                //nothing
+            }
+        }
+        ,
         data() {
             return {
-                link: '/order:' + this.name
+                link: '/order:' + this.modelId
             }
         }
     };
