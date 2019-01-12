@@ -2,6 +2,7 @@
     <div class='main'>
         <Brand/>
         <Categories/>
+        <Orders/>
     </div>
 </template>
 
@@ -35,8 +36,6 @@
         },
 
         created() {
-            // this.fetchAllCategories();
-            // this.fetchOrders();
             this.fetchBrands();
 
         }

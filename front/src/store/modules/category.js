@@ -48,6 +48,9 @@ const actions = {
 
     [types.FETCH_BRAND_CATEGORIES]: ({commit}, payload) => {
         commit(types.SAVE_ALL_CATEGORIES_PENDING);
+        commit(types.SAVE_ORDERS_SUCCESS, null);
+
+
         axios.request(baseUrl + 'categories/brands',
             {
                 method: 'get',

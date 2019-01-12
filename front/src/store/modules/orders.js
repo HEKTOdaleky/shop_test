@@ -36,9 +36,11 @@ const actions = {
 
     [types.FETCH_ORDERS]: (({commit}, payload) => {
         commit(types.SAVE_ORDERS_PENDING);
+        const {category, brand} = payload;
+
         return axios.request(baseUrl + 'orders', {
             method: 'get',
-            params: payload
+            params: {category, brand}
         })
             .then(response => {
                 commit(types.SAVE_ORDERS_SUCCESS, response.data);

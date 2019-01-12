@@ -66,6 +66,42 @@ db.once("open", async () => {
             about: "fjdofsjdofjdsofjdsopfjsdofodpsfjdopsfjdopsfjdsopfs"
         },
         {
+            name: "gdsgsd",
+            brand: adidas._id,
+            category: jacket.category,
+            subcategory: jacket._id,
+            price: 110,
+            image: "1.jpg",
+            about: "fjdoffdsfdspsfjdsopfs"
+        },
+        {
+            name: "g321321d",
+            brand: adidas._id,
+            category: jacket.category,
+            subcategory: jacket._id,
+            price: 110,
+            image: "1.jpg",
+            about: "fjdoffdsfdspsfjdsopfs"
+        },
+        {
+            name: "gewqeqwgsd",
+            brand: adidas._id,
+            category: jacket.category,
+            subcategory: jacket._id,
+            price: 110,
+            image: "2.jpg",
+            about: "fjdoffdsfdspsfjdsopfs"
+        },
+        {
+            name: "g121dddd",
+            brand: adidas._id,
+            category: jacket.category,
+            subcategory: jacket._id,
+            price: 110,
+            image: "1.jpg",
+            about: "fjdoffdsfdspsfjdsopfs"
+        },
+        {
             name: "air",
             brand: nike._id,
             category: running.category,

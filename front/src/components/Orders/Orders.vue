@@ -39,6 +39,8 @@
     .orders {
         display: flex;
         flex-wrap: wrap;
+        width: 47%;
+        margin-left: 60px;
     }
 
 </style>

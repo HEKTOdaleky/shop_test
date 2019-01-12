@@ -2,7 +2,8 @@
     <div class='categories'>
         <ul>
             <li
-                    v-for='(item,index) in categories'>
+                    v-for='(item,index) in categories'
+                    v-on:click='()=>fetchOrders({category:item.category.name, brand:item.brand.name})'>
                 {{item.category.name}}
             </li>
         </ul>
@@ -11,11 +12,17 @@
 
 <script>
     import * as types from '../../store/types';
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapActions} from 'vuex';
 
 
     export default {
         name: 'Categories',
+        methods: {
+            ...mapActions({
+                fetchOrders: types.FETCH_ORDERS
+            })
+        },
+
         computed: {
             ...mapGetters({
                 categories: types.GET_CATEGORIES
@@ -26,7 +33,10 @@
 
 <style>
     .categories {
-        border: 1px solid brown;
+        border: 1px solid black;
+        height: auto;
+        min-height: 630px;
+        width: 25%;
     }
 
     .categories li {

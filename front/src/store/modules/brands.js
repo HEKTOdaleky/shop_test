@@ -33,6 +33,9 @@ const mutations = {
 const actions = {
     [types.FETCH_BRANDS]: ({commit}) => {
         commit(types.SAVE_BRANDS_PENDING);
+
+        commit(types.SAVE_ORDERS_SUCCESS, null);
+
         axios.get(`${baseUrl}brands`)
             .then(response => {
                 commit(types.SAVE_BRANDS_SUCCESS, response.data);

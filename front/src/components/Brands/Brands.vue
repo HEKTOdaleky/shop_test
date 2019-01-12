@@ -35,7 +35,8 @@
     .brands {
         width: 25%;
         border: 1px solid black;
-        height: 100%;
+        height: auto;
+        min-height: 630px;
     }
 
     .brands li {
