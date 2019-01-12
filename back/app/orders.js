@@ -27,7 +27,10 @@ const createRouter = () => {
         console.log(req.query.id)
         try {
             const order = await Orders.findOne({orderNum: req.query.id});
-            res.send(order);
+            if (order) {
+                res.send(order);
+            }
+            res.status(404).send({message: 'Order not found'});
         }
         catch (e) {
             res.sendStatus(500);

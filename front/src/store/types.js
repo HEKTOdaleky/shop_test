@@ -3,6 +3,9 @@ export const GET_CATEGORIES = 'categories/GET_CATEGORIES';
 export const GET_ORDERS = 'categories/GET_ORDERS';
 export const GET_BRANDS = 'categories/GET_BRANDS';
 export const GET_ONE_ORDER = 'orders/GET_ONE_ORDER';
+export const GET_ONE_ORDER_ERROR = 'orders/GET_ONE_ORDER_ERROR';
+export const GET_ONE_ORDER_PENDING = 'orders/GET_ONE_ORDER_PENDING';
+
 
 //Mutations
 export const SAVE_ALL_CATEGORIES_SUCCESS = 'categories/SAVE_ALL_CATEGORIES_SUCCESS';

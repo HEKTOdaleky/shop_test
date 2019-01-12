@@ -15,6 +15,8 @@ const state = {
 
 const getters = {
     [types.GET_ORDERS]: state => state.orders,
+    [types.GET_ONE_ORDER]: state => state.oneOrder,
+    [types.GET_ONE_ORDER_ERROR]: state => state.oneOrderError
 };
 
 const mutations = {
@@ -37,17 +39,17 @@ const mutations = {
 
     [types.SAVE_ONE_ORDER_PENDING]: (state) => {
         state.oneOrderPending = true;
-        state.oneOrderError = false
+        state.oneOrderError = null
     },
 
-    [types.SAVE_ONE_ORDER_FAILURE]: (state) => {
+    [types.SAVE_ONE_ORDER_FAILURE]: (state, payload) => {
         state.oneOrderPending = false;
-        state.oneOrderError = true
+        state.oneOrderError = payload
     },
 
     [types.SAVE_ONE_ORDER_SUCCESS]: (state, payload) => {
         state.oneOrderPending = false;
-        state.oneOrderError = false;
+        state.oneOrderError = null;
         state.oneOrder = payload;
     },
 };
@@ -74,12 +76,12 @@ const actions = {
 
         return axios.request(baseUrl + 'orders/id', {
             method: 'get',
-            params: {order: payload}
+            params: {id: payload}
         })
             .then(response => {
                 commit(types.SAVE_ONE_ORDER_SUCCESS, response.data);
             }, error => {
-                commit(types.SAVE_ONE_ORDER_FAILURE);
+                commit(types.SAVE_ONE_ORDER_FAILURE, error.response && error.response.data);
             });
     })
 };

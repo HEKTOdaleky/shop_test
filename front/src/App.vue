@@ -1,5 +1,8 @@
 <template>
     <div class='container'>
+        <header>
+            <Header/>
+        </header>
         <router-view></router-view>
     </div>
 </template>
@@ -8,6 +11,7 @@
     import Orders from './components/Orders/Orders';
     import Brand from './components/Brands/Brands';
     import Categories from './components/Categories/Categories';
+    import Header from './components/Header/Header';
     import * as types from './store/types';
     import {mapActions, mapGetters} from 'vuex';
 
@@ -16,7 +20,8 @@
         components: {
             Orders,
             Brand,
-            Categories
+            Categories,
+            Header
         },
 
         methods: {
@@ -41,5 +46,7 @@
 </script>
 
 <style>
-
+    body {
+    margin: 0;
+    }
 </style>
