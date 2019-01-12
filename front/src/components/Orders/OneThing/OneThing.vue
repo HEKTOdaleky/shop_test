@@ -1,13 +1,15 @@
 <template>
     <div class='order'>
-        <div>
-            <img
-                    :src=image
-                    alt=''
-                    class=''>
-        </div>
-        <h6>{{name}}</h6>
-        <p>{{price+' $'}}</p>
+        <router-link class="nav-link" :to="link">
+            <div>
+                <img
+                        :src=image
+                        alt=''
+                        class=''>
+            </div>
+            <h6>{{name}}</h6>
+            <p>{{price+' $'}}</p>
+        </router-link>
     </div>
 </template>
 
@@ -29,6 +31,11 @@
             click: {
                 type: Function,
                 required: true
+            }
+        },
+        data() {
+            return {
+                link: '/order:' + this.name
             }
         }
     };

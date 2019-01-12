@@ -1,8 +1,6 @@
 <template>
-    <div class='main'>
-        <Brand/>
-        <Categories/>
-        <Orders/>
+    <div class='container'>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -43,7 +41,5 @@
 </script>
 
 <style>
-    .main {
-        display: flex;
-    }
+
 </style>

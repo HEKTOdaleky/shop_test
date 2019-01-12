@@ -1,33 +1,31 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Router from 'vue-router';
+
+import App from './App.vue';
+import OrderDescription from './components/OrderDescription/OrderDescription';
+import Main from './components/Main';
+
 import {store} from './store/store';
-import AppLayout from './App.vue';
-import NotFound from './components/NotFound/NotFound'
+
 
 Vue.use(Vuex);
-window.Vue = require('vue');
+Vue.use(Router);
 
+export const router = new Router({
+    mode: 'history',
+    routes: [
+        { path: '/', component: Main },
+        { path: '/order:id', component: OrderDescription },
+        // { path: '/register', component: RegisterPage },
 
-Vue.component('example-component', AppLayout);
-
-
-const routes = {
-    '/': AppLayout,
-    '*': NotFound
-}
+        { path: '*', redirect: '/' }
+    ]
+});
 
 new Vue({
     el: '#app',
-    data: {
-        currentRoute: window.location.pathname
-    },
-    computed: {
-        ViewComponent() {
-            return routes[this.currentRoute] || NotFound
-        }
-    },
+    router,
     store,
-    render(h) {
-        return h(this.ViewComponent)
-    }
+    render: h => h(App)
 });
