@@ -1,11 +1,14 @@
 <template>
     <div class='order'>
-        <router-link class="nav-link" :to="link" @click.native="()=>openOrder(modelId)">
+        <router-link
+            class="nav-link"
+            :to="link"
+            @click.native="()=>openOrder(modelId)">
             <div>
                 <img
-                        :src=image
-                        alt=''
-                        class=''>
+                    :src=image
+                    alt=''
+                    class=''>
             </div>
             <h6>{{name}}</h6>
             <p>{{price+' $'}}</p>
@@ -19,6 +22,7 @@
         props: {
             modelId: {
                 type: String,
+                required:true
 
             },
             image: {
@@ -30,22 +34,22 @@
                 required: true
             },
             name: {
-                type: String
+                type: String,
+                required:true
             },
             click: {
                 type: Function,
                 required: true
             }
         },
-        methods: {
-            openOrder(id) {
-                //nothing
-            }
-        }
-        ,
         data() {
             return {
                 link: '/order:' + this.modelId
+            };
+        },
+        methods: {
+            openOrder(id) {
+                // nothing
             }
         }
     };

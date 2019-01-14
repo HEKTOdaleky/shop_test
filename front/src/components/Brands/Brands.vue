@@ -2,8 +2,9 @@
     <div class='brands'>
         <ul>
             <li
-                    v-for='(item,index) in brands'
-                    v-on:click='()=>getCategories(item.name)'>
+                v-for='(item,index) in brands'
+                :key='index'
+                v-on:click='()=>getCategories(item.name)'>
                 {{item.name}}
             </li>
         </ul>
@@ -17,18 +18,19 @@
     export default {
         name: 'Brands',
 
-        methods: {
-            ...mapActions({
-                getCategories: types.FETCH_BRAND_CATEGORIES
-            })
-        },
-
         computed: {
             ...mapGetters({
                 brands: types.GET_BRANDS
             })
+        },
+
+        methods: {
+            ...mapActions({
+                getCategories: types.FETCH_BRAND_CATEGORIES
+            })
         }
-    }
+
+    };
 </script>
 
 <style>

@@ -1,12 +1,13 @@
 <template>
     <div class='orders'>
         <OneThing
-                v-for='(item,index) in orders'
-                :image='imageUrl + item.image'
-                :name='item.name'
-                :price='item.price'
-                :click='()=>console.log(item.name)'
-                :modelId='item.orderNum'/>
+            v-for='(item,index) in orders'
+            :key='index'
+            :image='imageUrl + item.image'
+            :name='item.name'
+            :price='item.price'
+            :click='()=>console.log(item.name)'
+            :modelId='item.orderNum'/>
     </div>
 </template>
 
@@ -21,19 +22,19 @@
             OneThing
         },
 
+        data() {
+            return {
+                imageUrl
+            };
+        },
+
         computed: {
             ...mapGetters({
                 orders: types.GET_ORDERS
             })
         },
 
-        data() {
-            return {
-                imageUrl
-            }
-        }
-
-    }
+    };
 </script>
 
 <style>

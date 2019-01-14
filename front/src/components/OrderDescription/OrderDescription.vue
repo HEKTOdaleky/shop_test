@@ -1,33 +1,58 @@
 <template>
     <div>
-        <div v-if='!this.error && !this.pending' class="order-description">
+        <div
+            v-if='!error && !pending'
+            class="order-description">
             <div class='order-description__image'>
-                <div class='order-description__img'><img :src='imageUrl+order.image'/></div>
-                <div class='order-description__preview'></div>
+                <div class='order-description__img'>
+                    <img :src='imageUrl+order.image'>
+                </div>
+                <div class='order-description__preview'/>
             </div>
+
             <div class='order-description__description'>
                 <div class="order-description__container">
-                    <h6 class='order-description__name'>{{order.brand && order.brand.name +' '+order.name}}</h6>
-                    <p class='order-description__price'>{{order.price+'$'}}</p>
-                    <button v-if='!this.getCart[order.orderNum]' v-on:click='()=>this.addToCart(order)'>ADD TO CART
+                    <h6 class='order-description__name'>
+                        {{order.brand && order.brand.name +' '+order.name}}
+                    </h6>
+
+                    <p class='order-description__price'>
+                        {{order.price+'$'}}
+                    </p>
+
+                    <button
+                        v-if='!getCart[order.orderNum]'
+                        v-on:click='()=>addToCart(order)'>
+                        ADD TO CART
                     </button>
-                    <div v-if='this.getCart[order.orderNum]' class='order-description__counter'>
-                        <p v-on:click='()=>removeFromCart(order)'>-</p>
-                        <p class='order-description__counter--info'>{{this.getCart[order.orderNum] &&
-                            this.getCart[order.orderNum].count}}</p>
-                        <p v-on:click='()=>this.addToCart(order)'>+</p>
+
+                    <div
+                        v-if='getCart[order.orderNum]'
+                        class='order-description__counter'>
+                        <p v-on:click='()=>removeFromCart(order)'>
+                            -
+                        </p>
+                        <p class='order-description__counter--info'>
+                            {{getCart[order.orderNum] && getCart[order.orderNum].count}}
+                        </p>
+                        <p v-on:click='()=>addToCart(order)'>
+                            +
+                        </p>
                     </div>
+
                     <strong>Description:</strong>
                     <p>{{order.about}}</p>
                 </div>
             </div>
         </div>
         <div
-                class='order-description--error'
-                v-if='this.error'>
-            <p>{{this.error.message}}</p>
+            class='order-description--error'
+            v-if='error'>
+            <p>{{error.message}}</p>
             <div class="order-description__main-link">
-                <router-link to='/'>Go to main menu</router-link>
+                <router-link to='/'>
+                    Go to main menu
+                </router-link>
             </div>
         </div>
     </div>
@@ -41,14 +66,10 @@
     export default {
         name: 'OrderDescription',
 
-        methods: {
-            ...mapActions({
-                getCurrentOrder: types.FETCH_ONE_ORDER,
-            }),
-            ...mapMutations({
-                addToCart: types.ADD_ITEM_TO_CART,
-                removeFromCart: types.REMOVE_ITEM_FROM_CART
-            })
+        data() {
+            return {
+                imageUrl
+            };
         },
 
         computed: {
@@ -64,12 +85,17 @@
             this.getCurrentOrder(window.location.pathname.split(':')[1]);
         },
 
-        data() {
-            return {
-                imageUrl
-            }
-        }
-    }
+        methods: {
+            ...mapActions({
+                getCurrentOrder: types.FETCH_ONE_ORDER
+            }),
+            ...mapMutations({
+                addToCart: types.ADD_ITEM_TO_CART,
+                removeFromCart: types.REMOVE_ITEM_FROM_CART
+            })
+        },
+
+    };
 </script>
 
 <style>

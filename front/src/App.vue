@@ -3,7 +3,7 @@
         <header>
             <Header/>
         </header>
-        <router-view></router-view>
+        <router-view/>
     </div>
 </template>
 
@@ -15,21 +15,12 @@
     import * as types from './store/types';
     import {mapActions, mapGetters, mapMutations} from 'vuex';
 
-
     export default {
         components: {
             Orders,
             Brand,
             Categories,
             Header
-        },
-
-        methods: {
-            ...mapActions({
-                fetchBrands: types.FETCH_BRANDS
-            }),
-
-            ...mapMutations({initialDataFromLocalStorage: types.INITIAL_DATA_FROM_LOCAL_STORAGE})
         },
 
         computed: {
@@ -41,8 +32,19 @@
         created() {
             this.fetchBrands();
             this.initialDataFromLocalStorage();
-        }
-    }
+        },
+
+        methods: {
+            ...mapActions({
+                fetchBrands: types.FETCH_BRANDS
+            }),
+
+            ...mapMutations({
+                initialDataFromLocalStorage: types.INITIAL_DATA_FROM_LOCAL_STORAGE
+            })
+        },
+
+    };
 </script>
 
 <style>

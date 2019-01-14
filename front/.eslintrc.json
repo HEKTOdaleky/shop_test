@@ -1,0 +1,93 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/recommended"
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "vue/html-indent": [
+            "error",
+            4,
+            {
+                "attribute": 1,
+                "closeBracket": 0,
+                "alignAttributesVertically": true,
+                "ignores": []
+            }
+        ],
+        "vue/v-on-style": [
+            "longform"
+        ],
+        "vue/html-quotes": [
+            "single"
+        ],
+        "vue/mustache-interpolation-spacing": [
+            "never"
+        ],
+        "vue/no-use-v-if-with-v-for": [
+            "allowUsingIterationVar"
+        ],
+        "vue/attribute-hyphenation": [
+            2,
+            "never"
+        ],
+        "vue/no-parsing-error": {
+            "invalid-first-character-of-tag-name": false
+        },
+        "vue/no-unused-components": 0,
+        "vue/attributes-order": 0,
+        "no-console": 0,
+        "vue/html-closing-bracket-newline": [
+            "error",
+            {
+                "singleline": "never",
+                "multiline": "never"
+            }
+        ],
+        "vue/max-attributes-per-line": [
+            2,
+            {
+                "singleline": 1,
+                "multiline": {
+                    "max": 1,
+                    "allowFirstLine": false
+                }
+            }
+        ],
+        "vue/html-closing-bracket-spacing": [
+            "error",
+            {
+                "selfClosingTag": "never"
+            }
+        ],
+        "vue/v-bind-style": [
+            "longform"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "no-useless-escape": [
+            0
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-empty": 0,
+        "no-unused-vars": 0,
+        "no-undef": 0,
+        "no-mixed-spaces-and-tabs": 0
+    }
+}

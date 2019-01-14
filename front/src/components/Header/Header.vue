@@ -1,12 +1,20 @@
 <template>
     <div class='header'>
         <div>
-            <router-link class="nav-link" to="/">Main Menu</router-link>
+            <router-link
+                class="nav-link"
+                to="/">
+                Main Menu
+            </router-link>
         </div>
         <div class="header__info">
             <div class="header__cart-block">
-                <i class="header__cart"></i>
-                <i class="header__counter" v-if='getCart'>{{getCart}}</i>
+                <i class="header__cart"/>
+                <i
+                    class="header__counter"
+                    v-if='getCart'>
+                    {{getCart}}
+                </i>
                 <p>Cart</p>
             </div>
         </div>
@@ -14,17 +22,17 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
-    import * as types from '../../store/types';
+import { mapGetters } from 'vuex';
+import * as types from '../../store/types';
 
-    export default {
-        name: 'Header',
-        computed: {
-            ...mapGetters({
-                getCart: types.GET_CART_COUNTER
-            })
-        }
-    }
+export default {
+  name: 'Header',
+  computed: {
+    ...mapGetters({
+      getCart: types.GET_CART_COUNTER
+    })
+  }
+};
 </script>
 
 <style>
