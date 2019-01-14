@@ -29,6 +29,8 @@ export const SAVE_ONE_ORDER_FAILURE = 'orders/SAVE_ONE_ORDER_FAILURE';
 export const ADD_ITEM_TO_CART = 'orders/ADD_ITEM_TO_CART';
 export const REMOVE_ITEM_FROM_CART = 'orders/REMOVE_ITEM_FROM_CART';
 
+export const INITIAL_DATA_FROM_LOCAL_STORAGE = 'localStorage/INITIAL_DATA_FROM_LOCAL_STORAGE';
+
 
 //Actions
 export const FETCH_ALL_CATEGORIES = 'categories/FETCH_ALL_CATEGORIES';

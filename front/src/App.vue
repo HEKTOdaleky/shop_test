@@ -13,7 +13,7 @@
     import Categories from './components/Categories/Categories';
     import Header from './components/Header/Header';
     import * as types from './store/types';
-    import {mapActions, mapGetters} from 'vuex';
+    import {mapActions, mapGetters, mapMutations} from 'vuex';
 
 
     export default {
@@ -26,10 +26,10 @@
 
         methods: {
             ...mapActions({
-                // fetchAllCategories: types.FETCH_ALL_CATEGORIES,
-                // fetchOrders: types.FETCH_ORDERS,
                 fetchBrands: types.FETCH_BRANDS
             }),
+
+            ...mapMutations({initialDataFromLocalStorage: types.INITIAL_DATA_FROM_LOCAL_STORAGE})
         },
 
         computed: {
@@ -40,13 +40,13 @@
 
         created() {
             this.fetchBrands();
-
+            this.initialDataFromLocalStorage();
         }
     }
 </script>
 
 <style>
     body {
-    margin: 0;
+        margin: 0;
     }
 </style>

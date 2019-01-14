@@ -21,7 +21,8 @@ const getters = {
     [types.GET_ONE_ORDER]: state => state.oneOrder,
     [types.GET_ONE_ORDER_ERROR]: state => state.oneOrderError,
     [types.GET_USER_CART]: state => state.cart,
-    [types.GET_CART_COUNTER]: state => state.cartCounter
+    [types.GET_CART_COUNTER]: state => state.cartCounter,
+    [types.GET_ONE_ORDER_PENDING]: state => state.oneOrderPending
 };
 
 const mutations = {
@@ -61,6 +62,8 @@ const mutations = {
         [types.ADD_ITEM_TO_CART]: (state, payload) => {
             state.cartCounter++;
             state.cart[payload.orderNum] ? state.cart[payload.orderNum].count++ : Vue.set(state.cart, payload.orderNum, {count: 1});
+            localStorage.setItem('shop-cart', JSON.stringify({cart: state.cart, cartCounter: state.cartCounter}));
+
         },
 
         [types.REMOVE_ITEM_FROM_CART]: (state, payload) => {
@@ -73,6 +76,14 @@ const mutations = {
                     Vue.delete(state.cart, payload.orderNum);
                 }
             }
+            localStorage.setItem('shop-cart', JSON.stringify({cart: state.cart, cartCounter: state.cartCounter}));
+
+        },
+
+        [types.INITIAL_DATA_FROM_LOCAL_STORAGE]: state => {
+            const {cart, cartCounter} = JSON.parse(localStorage.getItem('shop-cart'));
+            state.cart = cart;
+            state.cartCounter = cartCounter;
         },
 
     }

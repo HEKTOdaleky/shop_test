@@ -1,6 +1,8 @@
 <template>
     <div class='header'>
-        <div></div>
+        <div>
+            <router-link class="nav-link" to="/">Main Menu</router-link>
+        </div>
         <div class="header__info">
             <div class="header__cart-block">
                 <i class="header__cart"></i>
