@@ -8,31 +8,35 @@
             </router-link>
         </div>
         <div class="header__info">
-            <div class="header__cart-block">
-                <i class="header__cart"/>
-                <i
-                    class="header__counter"
-                    v-if='getCart'>
-                    {{getCart}}
-                </i>
-                <p>Cart</p>
-            </div>
+            <router-link
+                class="nav-link"
+                to="/cart">
+                <div class="header__cart-block">
+                    <i class="header__cart"/>
+                    <i
+                        class="header__counter"
+                        v-if='getCart'>
+                        {{getCart}}
+                    </i>
+                    <p>Cart</p>
+                </div>
+            </router-link>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import * as types from '../../store/types';
+    import {mapGetters} from 'vuex';
+    import * as types from '../../store/types';
 
-export default {
-  name: 'Header',
-  computed: {
-    ...mapGetters({
-      getCart: types.GET_CART_COUNTER
-    })
-  }
-};
+    export default {
+        name: 'Header',
+        computed: {
+            ...mapGetters({
+                getCart: types.GET_CART_COUNTER
+            })
+        }
+    };
 </script>
 
 <style>
@@ -47,6 +51,18 @@ export default {
 
     .header__info {
         padding: 5px 25px 5px;
+    }
+
+    .header__info > .nav-link {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        color: black;
+    }
+
+    .header__info > .nav-link:hover {
+        opacity: 0.8;
+        transform: scale(0.95);
     }
 
     .header__cart {

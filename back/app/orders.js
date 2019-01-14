@@ -24,7 +24,6 @@ const createRouter = () => {
     });
 
     router.get('/id', async (req, res) => {
-        console.log(req.query.id)
         try {
             const order = await Orders.findOne({orderNum: req.query.id}).populate('brand');
             if (order) {
@@ -34,6 +33,17 @@ const createRouter = () => {
         }
         catch (e) {
             res.sendStatus(500);
+        }
+    });
+
+    router.get('/cart-info', async (req, res) => {
+        console.log(req.query.cart);
+        try {
+            const cart = await Orders.find({orderNum: {$in: req.query.cart}}).populate('brand');
+            res.send(cart);
+        }
+        catch (e) {
+            res.sendStatus(500)
         }
     });
 
