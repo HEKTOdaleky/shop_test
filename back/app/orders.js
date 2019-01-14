@@ -26,7 +26,7 @@ const createRouter = () => {
     router.get('/id', async (req, res) => {
         console.log(req.query.id)
         try {
-            const order = await Orders.findOne({orderNum: req.query.id});
+            const order = await Orders.findOne({orderNum: req.query.id}).populate('brand');
             if (order) {
                 res.send(order);
             }

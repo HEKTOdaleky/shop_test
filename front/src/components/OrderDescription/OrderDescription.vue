@@ -7,9 +7,16 @@
             </div>
             <div class='order-description__description'>
                 <div class="order-description__container">
-                    <h6 class='order-description__name'>{{order.brand +' '+order.name}}</h6>
+                    <h6 class='order-description__name'>{{order.brand && order.brand.name +' '+order.name}}</h6>
                     <p class='order-description__price'>{{order.price+'$'}}</p>
-                    <button>ADD TO CART</button>
+                    <button v-if='!this.getCart[order.orderNum]' v-on:click='()=>this.addToCart(order)'>ADD TO CART
+                    </button>
+                    <div v-if='this.getCart[order.orderNum]' class='order-description__counter'>
+                        <p v-on:click='()=>removeFromCart(order)'>-</p>
+                        <p class='order-description__counter--info'>{{this.getCart[order.orderNum] &&
+                            this.getCart[order.orderNum].count}}</p>
+                        <p v-on:click='()=>this.addToCart(order)'>+</p>
+                    </div>
                     <strong>Description:</strong>
                     <p>{{order.about}}</p>
                 </div>
@@ -28,21 +35,28 @@
 
 <script>
     import * as types from '../../store/types';
-    import {mapActions, mapGetters} from 'vuex';
+    import {mapActions, mapGetters, mapMutations} from 'vuex';
     import {imageUrl} from '../../config';
 
     export default {
         name: 'OrderDescription',
 
         methods: {
-            ...mapActions({getCurrentOrder: types.FETCH_ONE_ORDER})
+            ...mapActions({
+                getCurrentOrder: types.FETCH_ONE_ORDER,
+            }),
+            ...mapMutations({
+                addToCart: types.ADD_ITEM_TO_CART,
+                removeFromCart: types.REMOVE_ITEM_FROM_CART
+            })
         },
 
         computed: {
             ...mapGetters({
                 order: types.GET_ONE_ORDER,
                 error: types.GET_ONE_ORDER_ERROR,
-                pending: types.GET_ONE_ORDER_PENDING
+                pending: types.GET_ONE_ORDER_PENDING,
+                getCart: types.GET_USER_CART
             })
         },
 
@@ -123,5 +137,30 @@
         display: block;
         margin: 0 auto;
         width: 250px;
+    }
+
+    .order-description__counter {
+        width: 100%;
+        display: flex;
+        border: 1px solid black;
+
+    }
+
+    .order-description__counter > p {
+        width: 25%;
+        display: block;
+        margin: 0;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .order-description__counter > .order-description__counter--info {
+        width: 48%;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        cursor: auto;
     }
 </style>

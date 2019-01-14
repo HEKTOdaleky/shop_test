@@ -5,6 +5,8 @@ export const GET_BRANDS = 'categories/GET_BRANDS';
 export const GET_ONE_ORDER = 'orders/GET_ONE_ORDER';
 export const GET_ONE_ORDER_ERROR = 'orders/GET_ONE_ORDER_ERROR';
 export const GET_ONE_ORDER_PENDING = 'orders/GET_ONE_ORDER_PENDING';
+export const GET_USER_CART = 'orders/GET_USER_CART';
+export const GET_CART_COUNTER = 'orders/GET_CART_COUNTER';
 
 
 //Mutations
@@ -23,6 +25,10 @@ export const SAVE_BRANDS_FAILURE = 'orders/SAVE_BRANDS_FAILURE';
 export const SAVE_ONE_ORDER_SUCCESS = 'orders/SAVE_ONE_ORDER_SUCCESS';
 export const SAVE_ONE_ORDER_PENDING = 'orders/SAVE_ONE_ORDER_PENDING';
 export const SAVE_ONE_ORDER_FAILURE = 'orders/SAVE_ONE_ORDER_FAILURE';
+
+export const ADD_ITEM_TO_CART = 'orders/ADD_ITEM_TO_CART';
+export const REMOVE_ITEM_FROM_CART = 'orders/REMOVE_ITEM_FROM_CART';
+
 
 //Actions
 export const FETCH_ALL_CATEGORIES = 'categories/FETCH_ALL_CATEGORIES';
