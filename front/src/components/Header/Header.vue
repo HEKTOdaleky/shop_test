@@ -1,5 +1,12 @@
 <template>
     <div class='header'>
+        <div class='signIn'>
+            <p
+                v-on:click='showLogin'>
+                Login/Register
+            </p>
+        </div>
+
         <div>
             <router-link
                 class="nav-link"
@@ -7,6 +14,7 @@
                 Main Menu
             </router-link>
         </div>
+
         <div class="header__info">
             <router-link
                 class="nav-link"
@@ -26,14 +34,22 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapMutations} from 'vuex';
     import * as types from '../../store/types';
+    import * as loginTypes from '../../store/loginTypes';
+
 
     export default {
         name: 'Header',
         computed: {
             ...mapGetters({
                 getCart: types.GET_CART_COUNTER
+            })
+        },
+
+        methods: {
+            ...mapMutations({
+                showLogin: loginTypes.SHOW_MODAL
             })
         }
     };
@@ -84,5 +100,13 @@
     .header__counter {
         vertical-align: middle;
         margin-left: 5px;
+    }
+
+    .signIn {
+        width: 15%;
+    }
+
+    .signIn > p {
+        cursor: pointer;
     }
 </style>
