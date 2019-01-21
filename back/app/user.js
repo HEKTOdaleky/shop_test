@@ -4,7 +4,7 @@ const User = require('../models/User');
 const createRouter = () => {
     const router = express.Router();
 
-    router.get('/',  async (req, res) => {
+    router.get('/', async (req, res) => {
         const users = await User.find();
 
         if (users) {
@@ -12,7 +12,28 @@ const createRouter = () => {
         }
     });
 
-    router.post('/',  (req, res) => {
+    router.post('/check', async (req, res) => {
+        const token = req.get('Token');
+        if (!token)
+            res.status(400).send({message: 'Empty token'});
+        try {
+            const user = await  User.findOne({token});
+            if (!user) {
+                res.sendStatus(404);
+            }
+            res.send({
+                user: {
+                    role: user.role, username: user.username
+                }, token: user.token
+            })
+        }
+
+        catch (e) {
+            res.sendStatus(500);
+        }
+    });
+
+    router.post('/', (req, res) => {
         if (req.body.password !== req.body.confirm)
             res.status(400).send({message: "Passwords do not match"});
 
@@ -28,7 +49,7 @@ const createRouter = () => {
     });
 
 
-    router.post('/change-password',  async (req, res) => {
+    router.post('/change-password', async (req, res) => {
         try {
 
             const user = await User.findOne({username: req.body.username});

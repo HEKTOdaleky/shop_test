@@ -1,39 +1,85 @@
 <template>
     <div class='login'>
-        <div class='preloader' v-if='loginPending || registerPending'></div>
+        <div
+            class='preloader'
+            v-if='loginPending || registerPending'/>
         <div v-if='!loginPending && !registerPending'>
-            <div class='login__user-data' v-if='login'>
+            <div
+                class='login__user-data'
+                v-if='login'>
                 <h6>Login</h6>
-                <i v-if='loginError'>{{loginError}}</i>
+                <i v-if='loginError'>
+                    {{loginError}}
+                </i>
                 <div>
-                    <label for='username'>Username</label>
-                    <input id='username' v-model='username'/>
+                    <label for='username'>
+                        Username
+                    </label>
+                    <input
+                        id='username'
+                        v-model='username'>
                 </div>
+
                 <div>
-                    <label for='password'>Password</label>
-                    <input id='password' v-model='password' type='password'/>
+                    <label for='password'>
+                        Password
+                    </label>
+                    <input
+                        id='password'
+                        v-model='password'
+                        type='password'>
                 </div>
-                <button v-on:click='()=>loginUser({username, password})'>Login</button>
-                <p v-on:click='changeModal'>Register</p>
+                <button v-on:click='()=>loginUser({username, password})'>
+                    Login
+                </button>
+                <p v-on:click='changeModal'>
+                    Register
+                </p>
             </div>
 
-            <div class='login__user-data' v-if='!login'>
+            <div
+                class='login__user-data'
+                v-if='!login'>
                 <h6>Register</h6>
-                <i v-if='registerError'>{{registerError}}</i>
+                <i v-if='registerError'>
+                    {{registerError}}
+                </i>
                 <div>
-                    <label for='username_r'>Username</label>
-                    <input id='username_r' v-model='username_r'/>
+                    <label for='username_r'>
+                        Username
+                    </label>
+                    <input
+                        id='username_r'
+                        v-model='username_r'>
                 </div>
+
                 <div>
-                    <label for='password_r'>Password</label>
-                    <input id='password_r' v-model='password_r' type='password'/>
+                    <label for='password_r'>
+                        Password
+                    </label>
+                    <input
+                        id='password_r'
+                        v-model='password_r'
+                        type='password'>
                 </div>
+
                 <div>
-                    <label for='confirm_r'>Confirm Password</label>
-                    <input id='confirm_r' v-model='confirm_r' type='password'/>
+                    <label for='confirm_r'>
+                        Confirm Password
+                    </label>
+                    <input
+                        id='confirm_r'
+                        v-model='confirm_r'
+                        type='password'>
                 </div>
-                <button v-on:click='()=>registerUser({username_r, password_r, confirm_r})'>Register</button>
-                <p v-on:click='changeModal'>Login</p>
+
+                <button
+                    v-on:click='()=>registerUser({username_r, password_r, confirm_r})'>
+                    Register
+                </button>
+                <p v-on:click='changeModal'>
+                    Login
+                </p>
             </div>
         </div>
     </div>
@@ -46,6 +92,17 @@
     export default {
         name: 'Login',
 
+        data() {
+            return {
+                login: true,
+                username: '',
+                password: '',
+                username_r: '',
+                password_r: '',
+                confirm_r: ''
+            };
+        },
+
         computed: {
             ...mapGetters({
                 loginPending: types.GET_LOGIN_PENDING,
@@ -55,20 +112,9 @@
             })
         },
 
-        data() {
-            return {
-                login: true,
-                username: '',
-                password: '',
-                username_r: '',
-                password_r: '',
-                confirm_r: ''
-            }
-        },
-
         methods: {
             changeModal() {
-                this.login = !this.login
+                this.login = !this.login;
             },
 
             ...mapActions({

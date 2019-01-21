@@ -7,7 +7,6 @@
         <div
             class='modal-cont'
             v-if='isModalShow'>
-
             <div
                 class='backdrop'
                 v-on:click='showLogin'/>
@@ -49,11 +48,13 @@
         created() {
             this.fetchBrands();
             this.initialDataFromLocalStorage();
+            this.checkToken();
         },
 
         methods: {
             ...mapActions({
-                fetchBrands: types.FETCH_BRANDS
+                fetchBrands: types.FETCH_BRANDS,
+                checkToken: loginTypes.CHECK_TOKEN
 
             }),
 

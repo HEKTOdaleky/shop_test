@@ -83,9 +83,15 @@ const mutations = {
     },
 
     [types.INITIAL_DATA_FROM_LOCAL_STORAGE]: state => {
-        const {cart, cartCounter} = JSON.parse(localStorage.getItem('shop-cart'));
-        state.cart = cart;
-        state.cartCounter = cartCounter;
+        const storage = JSON.parse(localStorage.getItem('shop-cart'));
+        if (!storage) return;
+
+        if (storage.cart) {
+            state.cart = storage.cart;
+        }
+        if (storage.cartCounter) {
+            state.cartCounter = storage.cartCounter;
+        }
     },
 
     [types.SAVE_CART_ORDERS_PENDING]: state => {

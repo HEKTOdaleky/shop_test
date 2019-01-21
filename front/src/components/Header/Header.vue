@@ -1,10 +1,19 @@
 <template>
     <div class='header'>
+        <p
+            v-if='token'
+            class='header__user'>
+            {{`Hello! ${getUsername.username}. `}}
+        </p>
         <div class='signIn'>
-            <p v-if='getToken'>{{`Hello! ${getUsername.username}. Log out`}}</p>
+            <p
+                v-if='token'
+                v-on:click='()=>logOut(token)'>
+                {{`Logout`}}
+            </p>
             <p
                 v-on:click='showLogin'
-                v-if='!getToken'>
+                v-if='!token'>
                 Login/Register
             </p>
         </div>
@@ -36,7 +45,7 @@
 </template>
 
 <script>
-    import {mapGetters, mapMutations} from 'vuex';
+    import {mapGetters, mapMutations, mapActions} from 'vuex';
     import * as types from '../../store/types';
     import * as loginTypes from '../../store/loginTypes';
 
@@ -46,7 +55,7 @@
         computed: {
             ...mapGetters({
                 getCart: types.GET_CART_COUNTER,
-                getToken: loginTypes.GET_USERNAME_TOKEN,
+                token: loginTypes.GET_USERNAME_TOKEN,
                 getUsername: loginTypes.GET_USERNAME_INFO
             })
         },
@@ -54,6 +63,10 @@
         methods: {
             ...mapMutations({
                 showLogin: loginTypes.SHOW_MODAL
+            }),
+
+            ...mapActions({
+                logOut: loginTypes.FETCH_USER_LOGOUT
             })
         }
     };
@@ -112,5 +125,11 @@
 
     .signIn > p {
         cursor: pointer;
+    }
+
+    .header__user {
+        cursor: auto;
+        font-weight: bold;
+        margin-right: 50px;
     }
 </style>
