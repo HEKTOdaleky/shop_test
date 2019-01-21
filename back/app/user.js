@@ -13,8 +13,8 @@ const createRouter = () => {
     });
 
     router.post('/',  (req, res) => {
-        if (req.body.password !== req.body.confirmPassword)
-            res.status(400).send({_message: "Passwords do not match"});
+        if (req.body.password !== req.body.confirm)
+            res.status(400).send({message: "Passwords do not match"});
 
         const user = new User({
             username: req.body.username,

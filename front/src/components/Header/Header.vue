@@ -1,8 +1,10 @@
 <template>
     <div class='header'>
         <div class='signIn'>
+            <p v-if='getToken'>{{`Hello! ${getUsername.username}. Log out`}}</p>
             <p
-                v-on:click='showLogin'>
+                v-on:click='showLogin'
+                v-if='!getToken'>
                 Login/Register
             </p>
         </div>
@@ -43,7 +45,9 @@
         name: 'Header',
         computed: {
             ...mapGetters({
-                getCart: types.GET_CART_COUNTER
+                getCart: types.GET_CART_COUNTER,
+                getToken: loginTypes.GET_USERNAME_TOKEN,
+                getUsername: loginTypes.GET_USERNAME_INFO
             })
         },
 
